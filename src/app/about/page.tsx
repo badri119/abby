@@ -3,19 +3,19 @@ import Link from "next/link";
 
 const images = [
   {
-    src: "/images/landscape-1.jpg", // Replace with your actual image paths
+    src: "", // Replace with your actual image paths
     width: 142,
     height: 260,
     alt: "A-BBY Landscape work example 1",
   },
   {
-    src: "/images/landscape-2.jpg",
+    src: "",
     width: 290,
     height: 260,
     alt: "A-BBY Landscape work example 2",
   },
   {
-    src: "/images/landscape-3.jpg",
+    src: "",
     width: 153,
     height: 260,
     alt: "A-BBY Landscape work example 3",

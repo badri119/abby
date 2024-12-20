@@ -1,5 +1,5 @@
 import { Service } from "@/types";
-import { services } from "@/components/services";
+import { services } from "@/components/servicesList";
 
 export interface ServiceCategory {
   name: string;

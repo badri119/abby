@@ -3,15 +3,15 @@ import { MapPin, Phone, Mail, Leaf } from "lucide-react";
 
 const images = [
   {
-    src: "/images/contact-1.jpg",
+    src: "",
     alt: "Landscaping work example 1",
   },
   {
-    src: "/images/contact-2.jpg",
+    src: "",
     alt: "Landscaping work example 2",
   },
   {
-    src: "/images/contact-3.jpg",
+    src: "",
     alt: "Landscaping work example 3",
   },
 ];

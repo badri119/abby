@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+// import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface GalleryImage {
@@ -24,7 +24,7 @@ const galleryImages: GalleryImage[] = [
 ];
 
 export default function GalleryPage() {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  //   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-green-50 to-white py-16">

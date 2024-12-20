@@ -35,7 +35,7 @@ const Process: React.FC = () => {
 
           <div className="rounded-full overflow-hidden">
             <Image
-              src="/api/placeholder/600/600"
+              src=""
               alt="Landscaping process"
               width={600}
               height={600}
