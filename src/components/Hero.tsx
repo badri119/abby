@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import AbbyLandingImage from "../../public/a-bby-landscape-1-1.webp";
+import AbbyLandingImage from "../../public/landing.png";
 
 interface Quote {
   text: string;
@@ -23,14 +23,14 @@ const Hero: React.FC = () => {
     <section className="relative bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Image */}
-        <div className="relative w-full rounded-3xl overflow-hidden mb-12">
+        <div className="relative w-full flex justify-center overflow-hidden mb-12">
           <Image
-            src={AbbyLandingImage} // Make sure to add your image to public/images/
+            src={AbbyLandingImage}
             alt="A-BBY Landscape"
-            width={1200}
+            width={600}
             height={600}
             priority
-            className="w-full h-[600px] object-cover"
+            className="object-contain h-[700px] rounded-md"
           />
         </div>
 

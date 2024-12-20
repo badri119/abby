@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { TestimonialType } from "@/types";
 import { Mail, Phone } from "lucide-react";
-
+import Danny from "../../public/Danny.webp";
 const testimonial: TestimonialType = {
   quote: "My garden is my most beautiful masterpiece",
   author: "Claude Monet",
   role: "Artist",
-  image: "/api/placeholder/150/150",
 };
 
 const ownerInfo = {
@@ -29,9 +28,9 @@ const Testimonial: React.FC = () => {
           </blockquote>
 
           <div className="mt-12">
-            <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+            <div className="w-36 h-36 rounded-full overflow-hidden mx-auto mb-4">
               <Image
-                src={testimonial.image}
+                src={Danny}
                 alt={ownerInfo.name}
                 width={150}
                 height={150}

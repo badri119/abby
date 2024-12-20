@@ -12,7 +12,6 @@ export interface TestimonialType {
   quote: string;
   author: string;
   role: string;
-  image: string;
 }
 
 export interface NavigationItem {
