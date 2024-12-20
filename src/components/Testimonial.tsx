@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { TestimonialType } from "@/types";
+import { Mail, Phone } from "lucide-react";
 
 const testimonial: TestimonialType = {
   quote: "My garden is my most beautiful masterpiece",
@@ -37,13 +38,25 @@ const Testimonial: React.FC = () => {
                 className="w-full h-full object-cover"
               />
             </div>
+
             <h3 className="text-xl font-semibold">{ownerInfo.name}</h3>
             <p className="text-gray-300">
               {ownerInfo.role}
               <br />
-              {ownerInfo.phone}
-              <br />
-              {ownerInfo.email}
+              <div className="flex gap-1 justify-center">
+                <Phone />
+                {ownerInfo.phone}
+              </div>
+
+              <div className="flex gap-1 justify-center">
+                <Mail />
+                <a
+                  href="mailto:info@a-bby.com"
+                  className=" hover:text-green-600 rounded-md transition duration-500"
+                >
+                  {ownerInfo.email}
+                </a>
+              </div>
             </p>
           </div>
         </div>
