@@ -29,7 +29,6 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
               {serviceLinks.map((link) => (
                 <li key={link.name}>

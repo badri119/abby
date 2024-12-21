@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "A-BBY Landscape - Professional Landscaping Services in Burnaby, BC",
+  title: "A-bby Landscape",
   description:
     "Professional landscaping services in Burnaby, Vancouver, and New Westminster. Specializing in commercial and residential maintenance since 2008.",
 };

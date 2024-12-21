@@ -45,7 +45,7 @@ export default function ContactPage() {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-contain rounded-md"
+                  className="md:object-contain rounded-md"
                 />
               </div>
             ))}
@@ -53,9 +53,9 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form and Info Grid */}
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-stretch">
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden h-full">
             {/* Decorative Elements */}
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-green-100 rounded-full opacity-50" />
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-green-50 rounded-full opacity-50" />
@@ -157,12 +157,12 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 space-y-8">
+          <div className="bg-white rounded-2xl shadow-xl p-8 h-full flex flex-col">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
               Contact Information
             </h2>
 
-            <div className="space-y-6">
+            <div className="flex justify-center md:gap-44 flex-grow">
               <div className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
                 <div>
@@ -177,29 +177,31 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <Phone className="w-6 h-6 text-green-600 flex-shrink-0" />
-                <div>
-                  <h3 className="font-medium text-gray-900">Phone</h3>
-                  <p className="text-gray-600">(604) 657-8636</p>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <Phone className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">Phone</h3>
+                    <p className="text-gray-600">(604) 657-8636</p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-4">
-                <Mail className="w-6 h-6 text-green-600 flex-shrink-0" />
-                <div>
-                  <h3 className="font-medium text-gray-900 ">Email</h3>
-                  <a
-                    href="mailto:info@a-bby.com"
-                    className="text-gray-600 hover:text-green-600 rounded-md transition duration-500 hover:scale-110 flex"
-                  >
-                    danny@a-bby.com
-                  </a>
+                <div className="flex items-center gap-4">
+                  <Mail className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">Email</h3>
+                    <a
+                      href="mailto:info@a-bby.com"
+                      className="text-gray-600 hover:text-green-600 rounded-md transition duration-500 hover:scale-110 flex"
+                    >
+                      danny@a-bby.com
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 rounded-lg overflow-hidden h-64 bg-gray-100 w-full">
+            <div className="rounded-lg overflow-hidden h-64 bg-gray-100 w-full mt-8">
               <div className="relative w-full h-full">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2604.6426991978574!2d-123.01267732337206!3d49.24526307340314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548676e683962ea9:0x7ef170d192a224a6!2s4355 Halley Ave, Burnaby, BC V5G 3C8!5e0!3m2!1sen!2sca!4v1734732253196!5m2!1sen!2sca"
