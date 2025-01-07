@@ -1,8 +1,14 @@
 "use client";
 
+import React, { useState, useCallback } from "react";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { useState, useCallback } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 interface GalleryImage {
   id: string;
@@ -15,25 +21,156 @@ interface GalleryImage {
 const galleryImages: GalleryImage[] = [
   {
     id: "1",
-    src: "",
+    src: "/image1.webp",
     alt: "Landscaping project 1",
     width: 1080,
     height: 1920,
   },
-  // Add other images here
+  {
+    id: "2",
+    src: "/image2.webp",
+    alt: "Landscaping project 2",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "3",
+    src: "/image3.webp",
+    alt: "Landscaping project 3",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "4",
+    src: "/image4.webp",
+    alt: "Landscaping project 4",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "5",
+    src: "/image5.webp",
+    alt: "Landscaping project 5",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "6",
+    src: "/image6.webp",
+    alt: "Landscaping project 6",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "7",
+    src: "/image7.webp",
+    alt: "Landscaping project 7",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "8",
+    src: "/image8.webp",
+    alt: "Landscaping project 8",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "9",
+    src: "/image9.webp",
+    alt: "Landscaping project 9",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "10",
+    src: "/image10.webp",
+    alt: "Landscaping project 10",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "11",
+    src: "/image11.webp",
+    alt: "Landscaping project 11",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "12",
+    src: "/image12.webp",
+    alt: "Landscaping project 12",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "13",
+    src: "/image13.webp",
+    alt: "Landscaping project 13",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "14",
+    src: "/image14.webp",
+    alt: "Landscaping project 14",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "15",
+    src: "/image15.webp",
+    alt: "Landscaping project 15",
+    width: 1080,
+    height: 1920,
+  },
+  {
+    id: "16",
+    src: "/image16.webp",
+    alt: "Landscaping project 16",
+    width: 1080,
+    height: 1920,
+  },
 ];
 
 export default function GalleryPage() {
-  const [loadCount, setLoadCount] = useState(12); // Initial load count
+  const [loadCount, setLoadCount] = useState(12);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [imageError, setImageError] = useState<Record<string, boolean>>({});
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   const loadMore = useCallback(() => {
     setLoadCount((prev) => Math.min(prev + 12, galleryImages.length));
   }, []);
 
+  const handleImageError = (imageId: string) => {
+    setImageError((prev) => ({
+      ...prev,
+      [imageId]: true,
+    }));
+    setIsImageLoading(false);
+  };
+
+  const handleImageLoad = () => {
+    setIsImageLoading(false);
+  };
+
+  const handleDialogOpen = (image: GalleryImage) => {
+    setSelectedImage(image);
+    setIsImageLoading(true);
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+    setSelectedImage(null);
+    setIsImageLoading(true);
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-green-50 to-white py-8 sm:py-16">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        {/* Header - Simplified for mobile */}
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">
             Our Work
@@ -43,52 +180,94 @@ export default function GalleryPage() {
           </p>
         </div>
 
-        {/* Masonry-style Gallery Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
           {galleryImages.slice(0, loadCount).map((image, index) => (
-            <Dialog key={image.id}>
+            <Dialog
+              key={image.id}
+              open={isDialogOpen && selectedImage?.id === image.id}
+              onOpenChange={(open) => {
+                if (!open) handleDialogClose();
+              }}
+            >
               <DialogTrigger asChild>
                 <div
-                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${
-                    index % 3 === 0 ? "row-span-2" : ""
-                  }`}
+                  className="relative group cursor-pointer overflow-hidden"
+                  onClick={() => handleDialogOpen(image)}
                 >
-                  <div className="aspect-square sm:aspect-[3/4] relative">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      loading={index < 8 ? "eager" : "lazy"}
-                      quality={index < 8 ? 85 : 75}
-                    />
+                  <div className="aspect-square sm:aspect-[3/4] relative h-[200px] sm:h-[300px]">
+                    {!imageError[image.id] ? (
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        loading={index < 8 ? "eager" : "lazy"}
+                        quality={index < 8 ? 85 : 75}
+                        onError={() => handleImageError(image.id)}
+                        onLoad={handleImageLoad}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                        <span className="text-gray-400">
+                          Image not available
+                        </span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-[95vw] sm:max-w-3xl h-auto">
-                <div className="relative aspect-auto max-h-[80vh]">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-contain"
-                    quality={90}
-                    priority={index < 4}
-                  />
+              <DialogContent className="flex items-center justify-center max-w-[95vw] sm:max-w-4xl mx-auto bg-black/90">
+                <DialogTitle className="sr-only">{image.alt}</DialogTitle>
+                <button
+                  onClick={handleDialogClose}
+                  className="absolute top-4 right-4 z-50 p-2 rounded-md bg-black/50 hover:bg-black/70 transition-colors"
+                  aria-label="Close dialog"
+                >
+                  <X className="h-6 w-6 text-white" />
+                </button>
+                <div className="relative w-full h-[80vh] flex items-center justify-center">
+                  {selectedImage && (
+                    <>
+                      {isImageLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-8 h-8 border-4 border-white/20 border-t-white rounded-md animate-spin" />
+                        </div>
+                      )}
+                      {!imageError[selectedImage.id] ? (
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={selectedImage.src}
+                            alt={selectedImage.alt}
+                            fill
+                            className="object-contain"
+                            quality={90}
+                            priority={true}
+                            onError={() => handleImageError(selectedImage.id)}
+                            onLoad={handleImageLoad}
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                          <span className="text-gray-400">
+                            Image not available
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
               </DialogContent>
             </Dialog>
           ))}
         </div>
 
-        {/* Load More Button */}
         {loadCount < galleryImages.length && (
           <div className="text-center mt-8">
             <button
               onClick={loadMore}
-              className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300 shadow-md"
+              className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors duration-300 shadow-md"
             >
               Load More
             </button>
