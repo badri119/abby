@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Image */}
         <div className="relative w-full flex justify-center overflow-hidden mb-12">
-          <div className="h-[700px] rounded-3xl overflow-hidden">
+          <div className="h-[530px] md:h-[700px] rounded-3xl overflow-hidden">
             <Image
               src={AbbyLandingImage}
               alt="A-BBY Landscape"
@@ -57,10 +57,10 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Spacer */}
-          <div className="h-8" />
+          {/* <div className="md:h-8" /> */}
 
           {/* Quote */}
-          <div className="w-full bg-gray-50 py-12">
+          <div className="w-full bg-gray-50 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <blockquote className="relative bg-white rounded-lg shadow-sm py-8 px-12 w-full">
                 <p className="text-2xl italic font-serif text-gray-800 text-center">
