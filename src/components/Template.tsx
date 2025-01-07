@@ -1,4 +1,18 @@
-export const EmailTemplate = ({ name, email, phone, address, service }) => (
+interface EmailTemplateProps {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  service: string;
+}
+
+export const EmailTemplate = ({
+  name,
+  email,
+  phone,
+  address,
+  service,
+}: EmailTemplateProps) => (
   <div>
     <h1>New Contact Form Submission</h1>
     <div style={{ marginTop: "20px" }}>
