@@ -1,8 +1,18 @@
 import { EmailTemplate } from "@/components/Template";
 import { Resend } from "resend";
 import { NextRequest } from "next/server";
+import * as React from "react"; // Import React directly
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+interface EmailData {
+  from: string;
+  to: string[];
+  subject: string;
+  react: React.ReactNode; // Assuming EmailTemplate returns a JSX element
+  replyTo: string;
+  attachments?: { filename: string; content: Buffer }[];
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,7 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Prepare email data
-    const emailData: any = {
+    const emailData: EmailData = {
       from: "Contact Form <onboarding@resend.dev>",
       to: ["siggersd@gmail.com"],
       subject: `New Contact Form Submission from ${name}`,
