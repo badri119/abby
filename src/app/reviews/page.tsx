@@ -10,9 +10,9 @@ export default function ReviewsPage() {
       <section className=" pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Quote Section */}
-          <div className="max-w-3xl mx-auto text-center relative mb-16">
+          <div className="max-w-4xl mx-auto text-center relative mb-16">
             <Quote className="w-16 h-16 text-green-100 mx-auto mb-6" />
-            <p className="text-xl md:text-2xl text-gray-600 italic mb-8">
+            <p className="text-lg md:text-2xl text-gray-600 italic mb-8">
               &quot;Transforming outdoor spaces into beautiful, sustainable
               landscapes. We take pride in every project and value the
               relationships we build with our clients.&quot;
@@ -66,7 +66,7 @@ export default function ReviewsPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
             Thank You for Choosing A-BBY Landscape
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Your trust in our services means the world to us. We&apos;re
             committed to maintaining the highest standards of quality and
             customer satisfaction in every project we undertake.

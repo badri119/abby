@@ -61,7 +61,7 @@ export default function AboutPage() {
       </div>
 
       {/* Image Gallery */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 sm:mb-12">
+      <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 sm:mb-12">
         {/* First Image */}
         <div className="lg:col-span-1">
           <div className="relative h-64 sm:h-80 lg:h-96">

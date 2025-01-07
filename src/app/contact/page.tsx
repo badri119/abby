@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Leaf, TreeDeciduous, Home } from "lucide-react";
 import flowers1 from "../../../public/flowers.jpg";
 import flowers2 from "../../../public/flowers2.jpg";
 import flowers3 from "../../../public/flowers3.jpg";
@@ -32,25 +32,6 @@ export default function ContactPage() {
           <p className="text-lg text-gray-600">
             Let us help bring your outdoor vision to life
           </p>
-        </div>
-
-        {/* Image Grid */}
-        <div className="flex justify-center w-full mb-12">
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-4 mb-12">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="relative h-40 md:h-80 w-28 md:w-60 shadow-lg transform hover:scale-105 transition-transform duration-300"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="md:object-contain rounded-md"
-                />
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Contact Form and Info Grid */}
@@ -103,18 +84,67 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="rounded-lg overflow-hidden h-64 bg-gray-100 w-full mt-8">
-              <div className="relative w-full h-full">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2604.6426991978574!2d-123.01267732337206!3d49.24526307340314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548676e683962ea9:0x7ef170d192a224a6!2s4355 Halley Ave, Burnaby, BC V5G 3C8!5e0!3m2!1sen!2sca!4v1734732253196!5m2!1sen!2sca"
-                  className="absolute top-0 left-0 w-full h-full"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+            {/* Service Features Section */}
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Our Landscaping Services
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <Leaf className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium text-gray-900">Lawn Care</h4>
+                    <p className="text-gray-600">
+                      We offer professional lawn care services to ensure your
+                      yard looks lush and healthy.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <TreeDeciduous className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium text-gray-900">Tree Pruning</h4>
+                    <p className="text-gray-600">
+                      We handle tree pruning to maintain healthy growth and
+                      aesthetic appeal.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Home className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium text-gray-900">
+                      Hedge Trimming
+                    </h4>
+                    <p className="text-gray-600">
+                      We provide precision hedge trimming for clean, polished
+                      outdoor spaces.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Image Grid */}
+        <div className="flex justify-center w-full mt-12">
+          <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-4 mb-12">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className="relative h-40 md:h-80 w-28 md:w-60 shadow-lg transform hover:scale-105 transition-transform duration-300"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="md:object-contain rounded-md"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

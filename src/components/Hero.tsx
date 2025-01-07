@@ -24,14 +24,16 @@ const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Image */}
         <div className="relative w-full flex justify-center overflow-hidden mb-12">
-          <Image
-            src={AbbyLandingImage}
-            alt="A-BBY Landscape"
-            width={600}
-            height={600}
-            priority
-            className="object-contain h-[700px] rounded-md"
-          />
+          <div className="h-[700px] rounded-3xl overflow-hidden">
+            <Image
+              src={AbbyLandingImage}
+              alt="A-BBY Landscape"
+              width={600}
+              height={600}
+              priority
+              className="object-contain w-full h-full"
+            />
+          </div>
         </div>
 
         {/* Introduction Text */}
