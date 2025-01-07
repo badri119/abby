@@ -3,6 +3,7 @@
 import { Leaf, Paperclip } from "lucide-react";
 import { FormEvent, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function ContactForm() {
   const { toast } = useToast();
@@ -57,14 +58,13 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden h-full">
+    <div className="bg-white rounded-2xl shadow-xl relative overflow-hidden h-full w-screen md:w-7/12">
       {/* Decorative Elements */}
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-green-100 rounded-full opacity-50" />
-      <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-green-50 rounded-full opacity-50" />
 
       <form
         ref={formRef}
-        className="relative space-y-8"
+        className="relative space-y-8 p-8"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -179,6 +179,51 @@ export default function ContactForm() {
           Send Message
         </button>
       </form>
+      {/* Contact Information */}
+      <div className=" py-6 p-4 md:p-4 h-full flex flex-col md:my-5">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+          Contact Information
+        </h2>
+
+        <div className="flex justify-center md:gap-44 flex-grow">
+          <div className="flex items-start gap-4">
+            <MapPin className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+            <div>
+              <h3 className="font-medium text-gray-900">Address</h3>
+              <p className="text-gray-600">
+                4355 Halley Ave.
+                <br />
+                Burnaby B.C.
+                <br />
+                V5G-3C8
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <Phone className="w-6 h-6 text-green-600 flex-shrink-0" />
+              <div>
+                <h3 className="font-medium text-gray-900">Phone</h3>
+                <p className="text-gray-600">(604) 657-8636</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <Mail className="w-6 h-6 text-green-600 flex-shrink-0" />
+              <div>
+                <h3 className="font-medium text-gray-900">Email</h3>
+                <a
+                  href="mailto:danny@a-bby.com"
+                  className="text-gray-600 hover:text-green-600 rounded-md transition duration-500 hover:scale-110 flex"
+                >
+                  danny@a-bby.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
