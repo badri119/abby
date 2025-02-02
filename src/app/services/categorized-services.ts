@@ -6,27 +6,49 @@ export interface ServiceCategory {
   services: Array<Service>;
 }
 
-// Define the categories and their service IDs
 const categories: { name: string; serviceIds: string[] }[] = [
   {
-    name: "Garden & Tree Care",
-    serviceIds: ["1", "2", "3", "4", "5", "12"],
+    name: "Hedge and Tree Care",
+    serviceIds: ["1", "2", "3", "4", "5", "6", "7"],
   },
   {
-    name: "Landscaping & Installation",
-    serviceIds: ["6", "7", "8", "21", "22", "26", "27"],
+    name: "Lawn and Garden",
+    serviceIds: ["8", "9", "10", "11", "12"],
   },
   {
-    name: "Lawn Maintenance",
-    serviceIds: ["9", "10", "11", "23"],
+    name: "Landscaping Installation (Hardscape)",
+    serviceIds: [
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+    ],
   },
   {
-    name: "Construction & Repair",
-    serviceIds: ["13", "14", "15", "16", "17", "18", "19", "20", "24", "25"],
+    name: "Construction, Fence and Paver repairs",
+    serviceIds: [
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+    ],
   },
 ];
 
-// Create categorized services array
 export const categorizedServices: ServiceCategory[] = categories.map(
   (category) => ({
     name: category.name,

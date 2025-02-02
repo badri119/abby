@@ -1,7 +1,8 @@
 import React from "react";
-import { Star, Leaf, Quote } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
+import Review from "../../../public/review.jpg";
 
 export default function ReviewsPage() {
   return (
@@ -52,9 +53,12 @@ export default function ReviewsPage() {
             </Link>
 
             {/* Decorative Elements */}
-            <div className="mt-8 flex justify-center gap-4">
-              <Leaf className="w-6 h-6 text-green-200 rotate-45" />
-              <Leaf className="w-6 h-6 text-green-200 -rotate-45" />
+            <div className="mt-8 flex justify-center">
+              <Image
+                src={Review}
+                alt="A-BBY Landscape review"
+                className="rounded-md w-96 h-96 object-cover"
+              />
             </div>
           </div>
         </div>

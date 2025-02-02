@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 
@@ -18,131 +19,40 @@ interface GalleryImage {
   height: number;
 }
 
-const galleryImages: GalleryImage[] = [
-  {
-    id: "1",
-    src: "/image1.webp",
-    alt: "Landscaping project 1",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "2",
-    src: "/image2.webp",
-    alt: "Landscaping project 2",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "3",
-    src: "/image3.webp",
-    alt: "Landscaping project 3",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "4",
-    src: "/image4.webp",
-    alt: "Landscaping project 4",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "5",
-    src: "/image5.webp",
-    alt: "Landscaping project 5",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "6",
-    src: "/image6.webp",
-    alt: "Landscaping project 6",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "7",
-    src: "/image7.webp",
-    alt: "Landscaping project 7",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "8",
-    src: "/image8.webp",
-    alt: "Landscaping project 8",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "9",
-    src: "/image9.webp",
-    alt: "Landscaping project 9",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "10",
-    src: "/image10.webp",
-    alt: "Landscaping project 10",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "11",
-    src: "/image11.webp",
-    alt: "Landscaping project 11",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "12",
-    src: "/image12.webp",
-    alt: "Landscaping project 12",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "13",
-    src: "/image13.webp",
-    alt: "Landscaping project 13",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "14",
-    src: "/image14.webp",
-    alt: "Landscaping project 14",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "15",
-    src: "/image15.webp",
-    alt: "Landscaping project 15",
-    width: 1080,
-    height: 1920,
-  },
-  {
-    id: "16",
-    src: "/image16.webp",
-    alt: "Landscaping project 16",
-    width: 1080,
-    height: 1920,
-  },
-];
-
 export default function GalleryPage() {
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [loadCount, setLoadCount] = useState(12);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [imageError, setImageError] = useState<Record<string, boolean>>({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch("/api/gallery");
+        if (!response.ok) {
+          throw new Error("Failed to fetch images");
+        }
+        const data = await response.json();
+        setGalleryImages(data.images);
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load images");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   const loadMore = useCallback(() => {
     setLoadCount((prev) => Math.min(prev + 12, galleryImages.length));
-  }, []);
+  }, [galleryImages.length]);
 
   const handleImageError = (imageId: string) => {
     setImageError((prev) => ({
@@ -167,6 +77,25 @@ export default function GalleryPage() {
     setSelectedImage(null);
     setIsImageLoading(true);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-green-600/20 border-t-green-600 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-red-600 text-center">
+          <p className="text-xl">Error loading gallery</p>
+          <p className="text-sm mt-2">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-green-50 to-white py-8 sm:py-16">
@@ -220,6 +149,10 @@ export default function GalleryPage() {
               </DialogTrigger>
               <DialogContent className="flex items-center justify-center max-w-[95vw] sm:max-w-4xl mx-auto bg-black/90">
                 <DialogTitle className="sr-only">{image.alt}</DialogTitle>
+                <DialogDescription className="sr-only">
+                  Enlarged view of {image.alt}. Press Escape key or click the
+                  close button to exit fullscreen view.
+                </DialogDescription>
                 <button
                   onClick={handleDialogClose}
                   className="absolute top-4 right-4 z-50 p-2 rounded-md bg-black/50 hover:bg-black/70 transition-colors"

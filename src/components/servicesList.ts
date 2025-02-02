@@ -4,54 +4,67 @@ export const services: Service[] = [
   { id: "1", title: "Hedge trimming" },
   { id: "2", title: "Tree pruning" },
   { id: "3", title: "Hedge topping" },
-  { id: "4", title: "Hedge removal, small to medium size tree removal" },
-  { id: "5", title: "Stump removal, small to medium size" },
-  { id: "6", title: "Hedge installation - Cedar, Yew, Boxwood to name a few" },
-  { id: "7", title: "Raised beds, construction, planting" },
-  { id: "8", title: "Landscape wood tie installation and repair" },
+  { id: "4", title: "Hedge removal, small to medium side tree removal" },
+  { id: "5", title: "Stump removal, small to medium sized" },
+  { id: "6", title: "Hedge installation - cedar, boxwood, yew to name a few" },
+  { id: "7", title: "Tree installation" },
+
+  {
+    id: "8",
+    title:
+      "Limited mowing service - smaller commercial spaces Still Creek or Douglas rd. area",
+  },
   {
     id: "9",
     title:
-      "Lawn repair - removal, chaffer beetle repair, soil, seed, fertilizer and lime treatment",
+      "Lawn repair, removal, chafer beetle soil repair, soil installation, seed, fertilizer and lime treatment",
   },
   {
     id: "10",
     title:
-      "General yard clean up such as brush clearing, weed whacking, weeding and weed control",
+      "General yard clean up, weed whacking, brush clearing, garden bed weeding, weed control for parking lots of gravel areas",
   },
   {
     id: "11",
     title:
-      "Manual commercial lawn mowing (smaller sites), we do not offer residential mowing but could refer you",
+      "Garden soil, bark mulch and lawn top dressing, supply and installation",
   },
+  { id: "12", title: "Landscaping fabric installation" },
+
+  { id: "13", title: "Raised beds, construction and installation" },
   {
-    id: "12",
-    title:
-      "Gardening I.E. planting annuals, shrubs, weeding, tending flowers and plants",
+    id: "14",
+    title: "Landscape wood ties, 4x4, 6x6, 4x6 pressure treated, mini ties",
   },
-  { id: "13", title: "Wood fence and gate repair" },
-  { id: "14", title: "Fence post extraction and replacement" },
-  { id: "15", title: "Shed removal, Shed foundation installation" },
-  { id: "16", title: "Paving stone repair" },
-  { id: "17", title: "Concrete removal, demolition and disposal" },
+  { id: "15", title: "Old castle stone garden stone edging" },
+  { id: "16", title: "Natural stone edging" },
+  { id: "17", title: "Landscape fabric installation" },
+  { id: "18", title: "River rock various, crushed gravel installation" },
+  { id: "19", title: "Soil, and mulch installation" },
   {
-    id: "18",
-    title: 'Patio installation - we use stable 12"x12" 16"x16" patio pavers',
+    id: "20",
+    title: "Rainbird drip line, soaker hose, installation and repair",
   },
-  { id: "19", title: "Natural stone wall repair" },
-  { id: "20", title: "Natural stone edge Installation" },
-  { id: "21", title: "Oldcastle Beltis garden edging installation" },
-  { id: "22", title: "River Rock Installation" },
-  { id: "23", title: "Soil installation, lawn topdressing, garden soil etc." },
-  { id: "24", title: "Rotten wood restoration" },
-  { id: "25", title: "Handyman Services" },
+  { id: "21", title: "Flagstone installation, stepping stones" },
+  { id: "22", title: 'Patio installation 12"x12" 16x16" patio slabs' },
+  { id: "23", title: "Tree ring installation" },
+
+  // Construction, Fence and Paver repairs
+  { id: "24", title: "Wood fence and gate repair" },
+  { id: "25", title: "Fence post extraction and replacement" },
   {
     id: "26",
-    title:
-      "Landscape fabric weed barrier installed with heavy duty commercial grade material",
+    title: "Shed removal, Shed foundation installation ie: gravel or wood deck",
   },
+  { id: "27", title: "Paving stone repair due to heaving, or erosion" },
   {
-    id: "27",
-    title: "Installation of rainbird drip line, soaker hoses, and repair",
+    id: "28",
+    title: "Concrete removal and disposal small to medium size jobs",
   },
+  { id: "29", title: "Natural stone masonry wall repair" },
+  { id: "30", title: "Natural stone edge installation" },
+  { id: "31", title: "Rotten wood restoration" },
+  { id: "32", title: "Wood arbor construction" },
+  { id: "33", title: "Basic Handyman services" },
+  { id: "34", title: "Pressure washing walkways, decks and driveways" },
 ];

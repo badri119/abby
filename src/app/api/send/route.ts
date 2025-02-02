@@ -9,17 +9,15 @@ interface EmailData {
   from: string;
   to: string[];
   subject: string;
-  react: React.ReactNode; // Assuming EmailTemplate returns a JSX element
+  react: React.ReactNode;
   replyTo: string;
   attachments?: { filename: string; content: Buffer }[];
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // Get the form data
     const formData = await request.formData();
 
-    // Extract file and other fields
     const file = formData.get("attachment") as File | null;
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
@@ -27,7 +25,6 @@ export async function POST(request: NextRequest) {
     const address = formData.get("address") as string;
     const service = formData.get("service") as string;
 
-    // Validate required fields
     if (!name || !email || !phone || !address || !service) {
       return Response.json(
         { error: "All fields are required" },
@@ -35,7 +32,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare email data
     const emailData: EmailData = {
       from: "Contact Form <onboarding@resend.dev>",
       to: ["siggersd@gmail.com"],
@@ -50,7 +46,6 @@ export async function POST(request: NextRequest) {
       replyTo: email,
     };
 
-    // If there's a file attachment, process it
     if (file) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
