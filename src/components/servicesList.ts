@@ -4,15 +4,15 @@ export const services: Service[] = [
   { id: "1", title: "Hedge trimming" },
   { id: "2", title: "Tree pruning" },
   { id: "3", title: "Hedge topping" },
-  { id: "4", title: "Hedge removal, small to medium side tree removal" },
-  { id: "5", title: "Stump removal, small to medium sized" },
+  { id: "4", title: "Hedge removal, small to medium size tree removal" },
+  { id: "5", title: "Stump removal, small to medium size" },
   { id: "6", title: "Hedge installation - cedar, boxwood, yew to name a few" },
   { id: "7", title: "Tree installation" },
 
   {
     id: "8",
     title:
-      "Limited mowing service - smaller commercial spaces Still Creek or Douglas rd. area",
+      "Limited mowing service - Smaller commercial lawns along the Still Creek and Douglas Road corridor",
   },
   {
     id: "9",

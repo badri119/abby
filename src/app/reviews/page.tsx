@@ -8,7 +8,7 @@ export default function ReviewsPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* Hero Section */}
-      <section className=" pb-24">
+      <section className=" pb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Quote Section */}
           <div className="max-w-4xl mx-auto text-center relative mb-16">
@@ -57,7 +57,7 @@ export default function ReviewsPage() {
               <Image
                 src={Review}
                 alt="A-BBY Landscape review"
-                className="rounded-md w-96 h-96 object-cover"
+                className="rounded-md"
               />
             </div>
           </div>
