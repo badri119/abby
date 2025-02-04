@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     const emailData: EmailData = {
       from: "Contact Form <onboarding@resend.dev>",
-      to: ["siggersd@gmail.com"],
+      to: ["danny@a-bby.com"],
       subject: `New Contact Form Submission from ${name}`,
       react: EmailTemplate({
         name,
