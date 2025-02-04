@@ -17,7 +17,7 @@ const Services = () => {
 
         {/* Desktop Grid */}
         <div className="hidden md:block">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
             {categorizedServices.map((category) => (
               <div key={category.name} className="space-y-4">
                 <h3 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">

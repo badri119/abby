@@ -217,7 +217,7 @@ export default function ContactForm() {
                   href="mailto:danny@a-bby.com"
                   className="text-gray-600 hover:text-green-600 rounded-md transition duration-500 hover:scale-110 flex"
                 >
-                  danny@a-bby.com
+                  Danny@a-bby.com
                 </a>
               </div>
             </div>

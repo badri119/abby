@@ -110,9 +110,8 @@ export default function AboutPage() {
             href="/contact"
             className="text-green-600 hover:text-green-700 underline transition-colors"
           >
-            contact us
+            contact us.
           </Link>{" "}
-          now
         </p>
       </div>
     </main>

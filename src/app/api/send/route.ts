@@ -1,7 +1,7 @@
 import { EmailTemplate } from "@/components/Template";
 import { Resend } from "resend";
 import { NextRequest } from "next/server";
-import * as React from "react"; // Import React directly
+import * as React from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
