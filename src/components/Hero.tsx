@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
               src={AbbyLandingImage}
               alt="A-BBY Landscape"
               priority
-              className=" object-cover w-full h-auto md:w-[1100px] md:h-[700px]"
+              className=" object-cover w-full h-auto md:w-auto md:h-[700px]"
             />
           </div>
         </div>
