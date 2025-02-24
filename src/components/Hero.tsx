@@ -24,14 +24,12 @@ const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Image */}
         <div className="relative w-full flex justify-center overflow-hidden mb-12">
-          <div className="h-[530px] md:h-[700px] rounded-3xl overflow-hidden">
+          <div className="md:h-[700px] rounded-3xl overflow-hidden">
             <Image
               src={AbbyLandingImage}
               alt="A-BBY Landscape"
-              width={600}
-              height={600}
               priority
-              className="object-contain w-full h-full"
+              className=" object-cover w-full h-auto md:w-[1100px] md:h-[700px]"
             />
           </div>
         </div>
@@ -41,7 +39,8 @@ const Hero: React.FC = () => {
           {/* Company Introduction */}
           <p className="text-xl">
             A-BBY Landscape has been a locally owned and operated business since
-            2008, proudly situated in Burnaby, B.C.
+            2008,
+            <br /> proudly situated in Burnaby, B.C.
             <br />
             Offering services to Vancouver, Burnaby, and select areas of New
             Westminster.
