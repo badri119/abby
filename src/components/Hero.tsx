@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import AbbyLandingImage from "../../public/landing.png";
+import AbbyLandingMobile from "../../public/landing-mobile.png";
+import AbbyLandingDesktop from "../../public/landing-window.png";
 
 interface Quote {
   text: string;
@@ -22,15 +23,24 @@ const Hero: React.FC = () => {
   return (
     <section className="relative bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Image */}
         <div className="relative w-full flex justify-center overflow-hidden mb-12">
           <div className="md:h-[700px] rounded-3xl overflow-hidden">
-            <Image
-              src={AbbyLandingImage}
-              alt="A-BBY Landscape"
-              priority
-              className=" object-cover w-full h-auto md:w-auto md:h-[700px]"
-            />
+            <div className="block md:hidden">
+              <Image
+                src={AbbyLandingMobile}
+                alt="A-BBY Landscape"
+                priority
+                className="object-cover w-full h-auto"
+              />
+            </div>
+            <div className="hidden md:block">
+              <Image
+                src={AbbyLandingDesktop}
+                alt="A-BBY Landscape"
+                priority
+                className="object-cover w-auto h-[700px]"
+              />
+            </div>
           </div>
         </div>
 
