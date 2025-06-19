@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
 
-    const file = formData.get("attachment") as File | null;
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
@@ -46,16 +45,22 @@ export async function POST(request: NextRequest) {
       replyTo: email,
     };
 
-    if (file) {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+    // Handle multiple file attachments
+    const attachmentEntries = formData.getAll("attachment");
+    if (attachmentEntries.length > 0) {
+      emailData.attachments = [];
 
-      emailData.attachments = [
-        {
-          filename: file.name,
-          content: buffer,
-        },
-      ];
+      for (const entry of attachmentEntries) {
+        if (entry instanceof File) {
+          const bytes = await entry.arrayBuffer();
+          const buffer = Buffer.from(bytes);
+
+          emailData.attachments.push({
+            filename: entry.name,
+            content: buffer,
+          });
+        }
+      }
     }
 
     const { data, error } = await resend.emails.send(emailData);

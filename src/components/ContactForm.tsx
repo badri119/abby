@@ -1,6 +1,6 @@
 "use client";
 
-import { Leaf, Paperclip } from "lucide-react";
+import { Leaf, Paperclip, X } from "lucide-react";
 import { FormEvent, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Mail } from "lucide-react";
@@ -8,19 +8,25 @@ import { MapPin, Phone, Mail } from "lucide-react";
 export default function ContactForm() {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
-  const [fileName, setFileName] = useState<string>("");
+  const [files, setFiles] = useState<File[]>([]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!formRef.current) return;
 
-    // Create FormData object
     const formData = new FormData(formRef.current);
+
+    formData.delete("attachment");
+
+    files.forEach((file) => {
+      formData.append("attachment", file);
+    });
 
     try {
       const response = await fetch("/api/send", {
         method: "POST",
-        body: formData, // Send formData directly instead of JSON
+        body: formData,
       });
 
       const result = await response.json();
@@ -29,9 +35,8 @@ export default function ContactForm() {
         throw new Error(result.error || "Failed to send message");
       }
 
-      // Clear the form
       formRef.current.reset();
-      setFileName("");
+      setFiles([]);
 
       toast({
         title: "Message sent",
@@ -51,15 +56,25 @@ export default function ContactForm() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-    }
+    const selectedFiles = e.target.files;
+    if (!selectedFiles) return;
+
+    const newFiles = Array.from(selectedFiles);
+
+    setFiles((prevFiles) => {
+      const updatedFiles = [...prevFiles, ...newFiles];
+      return updatedFiles.slice(0, 3);
+    });
+
+    e.target.value = "";
+  };
+
+  const removeFile = (index: number) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
   return (
     <div className="bg-white rounded-2xl shadow-xl relative overflow-hidden h-full w-screen md:w-7/12">
-      {/* Decorative Elements */}
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-green-100 rounded-full opacity-50" />
 
       <form
@@ -156,6 +171,7 @@ export default function ContactForm() {
         <div className="relative">
           <input
             type="file"
+            multiple
             id="attachment"
             name="attachment"
             onChange={handleFileChange}
@@ -167,8 +183,37 @@ export default function ContactForm() {
             className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer hover:text-green-600 transition-colors"
           >
             <Paperclip className="w-4 h-4" />
-            {fileName || "Attach File (PDF, PNG, JPEG)"}
+            {files.length === 0
+              ? "Attach Files (PDF, PNG, JPEG) - Max 3"
+              : "Add more files"}
           </label>
+
+          {files.length > 0 && (
+            <div className="mt-3 space-y-2">
+              {files.map((file, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between bg-gray-50 p-2 rounded"
+                >
+                  <span className="text-sm truncate max-w-[80%]">
+                    {file.name}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(index)}
+                    className="text-gray-500 hover:text-red-500"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+              {files.length >= 3 && (
+                <p className="text-xs text-amber-600">
+                  Maximum of 3 files reached
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         <button

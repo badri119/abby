@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface GalleryImage {
   id: string;
@@ -77,6 +77,47 @@ export default function GalleryPage() {
     setSelectedImage(null);
     setIsImageLoading(true);
   };
+
+  const navigateImage = useCallback(
+    (direction: "next" | "prev") => {
+      if (!selectedImage) return;
+
+      const currentIndex = galleryImages.findIndex(
+        (img) => img.id === selectedImage.id
+      );
+      if (currentIndex === -1) return;
+
+      let newIndex;
+      if (direction === "next") {
+        newIndex = (currentIndex + 1) % galleryImages.length;
+      } else {
+        newIndex =
+          (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      }
+
+      setSelectedImage(galleryImages[newIndex]);
+      setIsImageLoading(true);
+    },
+    [galleryImages, selectedImage]
+  );
+
+  // Add keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isDialogOpen) return;
+
+      if (e.key === "ArrowRight") {
+        navigateImage("next");
+      } else if (e.key === "ArrowLeft") {
+        navigateImage("prev");
+      } else if (e.key === "Escape") {
+        handleDialogClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isDialogOpen, navigateImage, handleDialogClose]);
 
   if (isLoading) {
     return (
@@ -160,6 +201,25 @@ export default function GalleryPage() {
                 >
                   <X className="h-6 w-6 text-white" />
                 </button>
+
+                {/* Previous Button */}
+                <button
+                  onClick={() => navigateImage("prev")}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-8 w-8 text-white" />
+                </button>
+
+                {/* Next Button */}
+                <button
+                  onClick={() => navigateImage("next")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-8 w-8 text-white" />
+                </button>
+
                 <div className="relative w-full h-[80vh] flex items-center justify-center">
                   {selectedImage && (
                     <>
@@ -191,6 +251,16 @@ export default function GalleryPage() {
                     </>
                   )}
                 </div>
+
+                {/* Image counter */}
+                {selectedImage && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 px-3 py-1 rounded-full text-white text-sm">
+                    {galleryImages.findIndex(
+                      (img) => img.id === selectedImage.id
+                    ) + 1}{" "}
+                    / {galleryImages.length}
+                  </div>
+                )}
               </DialogContent>
             </Dialog>
           ))}
