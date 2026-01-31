@@ -9,6 +9,7 @@ export default function ContactForm() {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const [files, setFiles] = useState<File[]>([]);
+  const startedAt = useRef(Date.now());
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -83,6 +84,22 @@ export default function ContactForm() {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
+        <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden">
+          <label htmlFor="company">Company</label>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+        <input
+          type="hidden"
+          id="form_started_at"
+          name="form_started_at"
+          value={startedAt.current}
+        />
         <div className="relative">
           <input
             type="text"
