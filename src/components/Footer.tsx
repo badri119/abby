@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:info@a-bby.com"
+                  href="mailto:danny@a-bby.com"
                   className=" hover:text-green-600 rounded-md transition duration-500"
                 >
                   danny@a-bby.com

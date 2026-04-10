@@ -50,7 +50,7 @@ const Testimonial: React.FC = () => {
               <div className="flex gap-1 justify-center">
                 <Mail />
                 <a
-                  href="mailto:info@a-bby.com"
+                  href="mailto:danny@a-bby.com"
                   className=" hover:text-green-600 rounded-md transition duration-500"
                 >
                   {ownerInfo.email}
